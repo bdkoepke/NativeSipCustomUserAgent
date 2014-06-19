@@ -38,7 +38,6 @@ public class NativeSipCustomUserAgent implements IXposedHookLoadPackage {
     }
 
 	public void handleLoadPackage(LoadPackageParam param) throws Throwable {
-        XposedBridge.log("Loaded app: " + param.packageName);
         if (!param.packageName.equals(expectedPackage))
             return;
         findAndHookMethod("com.android.server.sip.SipHelper", param.classLoader, "createRequest", String.class, SipProfile.class, String.class, new XC_MethodHook() {
