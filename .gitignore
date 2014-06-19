@@ -31,5 +31,6 @@ proguard/
 .project
 *.iml
 
-# Ignore my personal key
-swordfish.keystore
+# Ignore keystores
+*.keystore
+keystore.properties

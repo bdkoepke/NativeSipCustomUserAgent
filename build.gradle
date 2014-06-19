@@ -45,15 +45,8 @@ android {
     }
 
     signingConfigs {
-        debug {
-            storeFile file("swordfish.keystore")
-        }
-
-        debugConfig {
-            storeFile file("other.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+        release {
+            project.ext.loadSign = true
         }
     }
 
@@ -61,7 +54,18 @@ android {
         debug {
             debuggable true
             jniDebugBuild true
-            signingConfig signingConfigs.debugConfig
+        }
+        release {
+            signingConfig signingConfigs.release
         }
     }
+}
+
+if (project.ext.loadSign) {
+    Properties keystore = new Properties()
+    keystore.load(new FileInputStream(rootProject.file('keystore.properties')))
+    android.signingConfigs.release.storeFile file(keystore.storeFile)
+    android.signingConfigs.release.storePassword keystore.storePassword
+    android.signingConfigs.release.keyAlias keystore.keyAlias
+    android.signingConfigs.release.keyPassword keystore.keyPassword
 }
