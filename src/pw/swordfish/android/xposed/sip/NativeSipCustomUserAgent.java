@@ -19,7 +19,7 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 public class NativeSipCustomUserAgent implements IXposedHookLoadPackage {
     private static final String expectedPackage = "com.android.phone";
     private static final String userAgentHeader = "User-Agent";
-    private static final String userAgent = "NT_DUO IVer34-13.3";
+    private static final String userAgent = "netTALK v1.0, Build 6000.1.11";
 
     private final Supplier<HeaderFactory> mHeaderFactory = Suppliers.memoize(new Supplier<HeaderFactory>() {
         @Override
